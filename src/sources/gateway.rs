@@ -40,6 +40,7 @@ impl From<GatewayEvent> for Event {
                 blueprint_name,
             },
         };
+        dbg!(&event.data);
         Self {
             name: event.name,
             emitter,
