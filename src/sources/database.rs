@@ -162,7 +162,8 @@ impl DatabaseFetcher {
                     .zip(db_transaction.receipt_event_sbors.into_iter())
                     .zip(db_transaction.receipt_event_names.into_iter())
                     .map(|((emitter, sbor), name)| Event {
-                        name,
+                        name, 
+                        json_sbor_data: None, 
                         binary_sbor_data: sbor,
                         emitter:
                             serde_json::from_value::<EventEmitterIdentifier>(

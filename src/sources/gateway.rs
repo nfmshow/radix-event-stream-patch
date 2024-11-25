@@ -40,13 +40,13 @@ impl From<GatewayEvent> for Event {
                 blueprint_name,
             },
         };
-        dbg!(&event.data);
         Self {
             name: event.name,
-            emitter,
+            emitter, 
+            json_sbor_data: Some(event.data), 
             binary_sbor_data: programmatic_json_to_bytes(&event.data).expect(
                 "Should always able to convert Programmatic JSON to binary SBOR",
-            ),
+            ), 
         }
     }
 }

@@ -11,6 +11,7 @@
 use chrono::Utc;
 use radix_client::gateway::models::{EntityType, ModuleId};
 use serde::{Deserialize, Serialize};
+use serde_json;
 
 /// Generic struct for ledger events from a
 /// transaction stream. To implement a new transaction
@@ -19,7 +20,8 @@ use serde::{Deserialize, Serialize};
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Event {
     pub name: String,
-    pub binary_sbor_data: Vec<u8>,
+    pub binary_sbor_data: Vec<u8>, 
+    pub json_sbor_data: Option<serde_json::Value>, 
     pub emitter: EventEmitter,
 }
 
