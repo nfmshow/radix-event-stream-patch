@@ -43,7 +43,7 @@ impl From<GatewayEvent> for Event {
         Self {
             name: event.name,
             emitter, 
-            json_sbor_data: Some(event.data), 
+            json_sbor_data: Some(event.data.clone()), 
             binary_sbor_data: programmatic_json_to_bytes(&event.data).expect(
                 "Should always able to convert Programmatic JSON to binary SBOR",
             ), 
