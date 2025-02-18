@@ -175,10 +175,10 @@ impl GatewayFetcher {
             while let Err(err) = response {
                 println!("fetcher.run: Response is Err");
                 dbg!(err);
-                log::warn!(
+                /*log::warn!(
                     "Error fetching transactions: {:?}\n Trying again...",
                     err
-                );
+                );*/
                 response = self.stream.next().await;
             }
             let response = response.unwrap();
