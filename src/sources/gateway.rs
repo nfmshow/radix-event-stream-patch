@@ -171,9 +171,7 @@ impl GatewayFetcher {
     async fn run(&mut self) {
         loop {
             let mut response = self.stream.next().await;
-            println!("fetcher.run: There is a response");
             while let Err(err) = response {
-                println!("fetcher.run: Response is Err");
                 dbg!(err);
                 /*log::warn!(
                     "Error fetching transactions: {:?}\n Trying again...",
@@ -183,7 +181,6 @@ impl GatewayFetcher {
             }
             let response = response.unwrap();
             if response.items.is_empty() {
-                println!("fetcher.run: Empty response");
                 sleep(self.caught_up_timeout).await;
             }
             let transactions: Vec<Transaction> =
@@ -191,7 +188,6 @@ impl GatewayFetcher {
             for transaction in transactions {
                 // Stop fetching if the receiving end is closed
                 if self.tx.send(transaction).await.is_err() {
-                    println!("fetcher.run: Receiver seems to have been terminated");
                     return;
                 }
             }
