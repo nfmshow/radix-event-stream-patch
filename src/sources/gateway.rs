@@ -174,6 +174,7 @@ impl GatewayFetcher {
             println!("fetcher.run: There is a response");
             while let Err(err) = response {
                 println!("fetcher.run: Response is Err");
+                dbg!(err);
                 log::warn!(
                     "Error fetching transactions: {:?}\n Trying again...",
                     err
